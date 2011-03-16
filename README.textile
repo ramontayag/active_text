@@ -4,7 +4,7 @@ ActiveText is to text, as ActiveRecord is to the database. ActiveText is able to
 
 h2. Why would you want to do this?
 
-Ramon Tayag was looking for a way to edit SASS files in terms of variables. He wanted end-users who didn't know anything about SASS to be able to edit variables to change colors, images, etc, in the stylesheet. To acheive that, he needed the ability to parse through text files and easy replace variables in them.
+Ramon Tayag was looking for a way to edit SASS files in terms of variables. He wanted end-users who didn't know anything about SASS to be able to edit variables to change colors, images, etc, in the stylesheet. To achieve that, he needed the ability to parse through text files and easy replace variables in them.
 
 == Contributing to active_text
  
