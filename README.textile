@@ -18,5 +18,4 @@ Ramon Tayag was looking for a way to edit SASS files in terms of variables. He w
 
 == Copyright
 
-Copyright (c) 2011 Ramon Tayag. See LICENSE.txt for
-further details.
+Copyright (c) 2011 Ramon Tayag. See LICENSE.txt for further details.
