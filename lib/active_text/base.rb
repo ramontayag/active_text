@@ -14,6 +14,21 @@ module ActiveText
       @options = options
     end
 
+    def update_attributes(args)
+      args.each do |k, v|
+        send(k) # Instantiate it, so it will exist in @variables
+        @variables[k].value = v unless @variables[k].nil? || v.nil?
+      end
+    end
+
+    # Used to update the text
+    def render
+      @variables.each do |key, var|
+        @text.gsub!(/^\$#{key}: .+;/, %Q($#{key}: #{var.value};))
+      end
+      @text
+    end
+
     protected
 
     # Whenever a variable is requested for, it falls into this.
@@ -24,7 +39,7 @@ module ActiveText
         # If there's no context (no variable with the proper
         # commented metadata), then it should not be accessible
         # and it won't be accessible
-        if context.blank?
+        if context.nil? || context == ""
           nil
         else
           @variables[method_name] ||= ActiveText::Variable.new(method_name, context, @options[:comment])

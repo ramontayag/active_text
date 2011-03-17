@@ -8,15 +8,15 @@ rescue Bundler::BundlerError => e
   exit e.status_code
 end
 require 'rake'
-
 require 'jeweler'
+
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "active_text"
   gem.homepage = "http://github.com/ramontayag/active_text"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{ActiveText : Text as ActiveRecord : Records. Sort of.}
+  gem.description = %Q{Aims to be able to read and replace "variables" in text in an active record manner}
   gem.email = "ramon@tayag.net"
   gem.authors = ["Ramon Tayag"]
   # Include your dependencies below. Runtime dependencies are required when using your gem,

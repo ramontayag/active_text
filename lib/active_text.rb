@@ -1,1 +1,2 @@
-require 'active_text'
+require 'active_text/base'
+require 'active_text/variable'
