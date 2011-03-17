@@ -16,7 +16,7 @@ Jeweler::Tasks.new do |gem|
   gem.homepage = "http://github.com/ramontayag/active_text"
   gem.license = "MIT"
   gem.summary = %Q{ActiveText : Text as ActiveRecord : Records. Sort of.}
-  gem.description = %Q{Aims to be able to read and replace "variables" in text in an active record manner}
+  gem.description = %Q{Aims to be able to read and replace "variables" in text in an active record manner. I don't claim that it behaves exactly like ActiveRecord - that is a much more complex beast than this will ever be.}
   gem.email = "ramon@tayag.net"
   gem.authors = ["Ramon Tayag"]
   # Include your dependencies below. Runtime dependencies are required when using your gem,
