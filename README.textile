@@ -54,6 +54,12 @@ $link_color: #555;
 
 You can also mass update: <pre>@at.update_attributes(:bg_image => %Q("http://anotherurl.com/img.jpg"), :link_color => "green")</pre>
 
+h2. Methods
+
+Besides calling .attribute, you can ask for all attributes:
+
+<pre>@at.attributes</pre> returns a hash <pre>{"mbc" => ActiveText::Variable, "mbc2" => ActiveText::Variable}</pre>
+
 h2. Gotchas
 
 Right now, only the following metadata will work:

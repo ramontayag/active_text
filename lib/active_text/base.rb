@@ -12,6 +12,8 @@ module ActiveText
       options[:comment] ||= /\/\//
       options[:context] ||= "(^(?:#{options[:comment]}\s@.*#{options[:eol]}){#{options[:context_lines]}})"
       @options = options
+
+      scan
     end
 
     def update_attributes(args)
@@ -29,7 +31,19 @@ module ActiveText
       @text
     end
 
+    def attributes
+      @variables
+    end
+
     protected
+
+    # scans though the text and instantiates all the variables in @variables
+    def scan
+      @text.each do |string|
+        string =~ /^\${1}([a-zA-Z0-9_]+):.+;/
+        @variables[$1] = ActiveText::Variable.new($1, context_of($1), @options[:comment]) if $1
+      end
+    end
 
     # Whenever a variable is requested for, it falls into this.
     def method_missing(method_name)

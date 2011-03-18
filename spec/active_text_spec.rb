@@ -93,4 +93,17 @@ $mbc: #555;}
     @s.mbc.value.should == "#555"
   end
 
+  it "should keep a record of what attributes are in it" do
+    @text = %{// @name Masthead Background Image
+// @kind file
+// @description Background image.
+$mbc2: "http://someurl.com/image.jpg";
+
+// @name Masthead BG Color
+// @kind color
+// @description Background color.
+$mbc: #555;}
+    @at = ActiveText::Base.new(@text)
+    @at.attributes.size.should == 2
+  end
 end
