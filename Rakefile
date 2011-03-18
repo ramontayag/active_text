@@ -8,15 +8,15 @@ rescue Bundler::BundlerError => e
   exit e.status_code
 end
 require 'rake'
-
 require 'jeweler'
+
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "active_text"
-  gem.homepage = "http://github.com/ramon.tayag/active_text"
+  gem.homepage = "http://github.com/ramontayag/active_text"
   gem.license = "MIT"
-  gem.summary = %Q{ActiveText : Text as ActiveRecord : Database. Sort of.}
-  gem.description = %Q{ActiveText aims to be able to read and replace "variables" in text files. This won't be exactly feel like ActiveRecord, but similar where it seems it should.}
+  gem.summary = %Q{ActiveText : Text as ActiveRecord : Records. Sort of.}
+  gem.description = %Q{Aims to be able to read and replace "variables" in text in an active record manner. I don't claim that it behaves exactly like ActiveRecord - that is a much more complex beast than this will ever be.}
   gem.email = "ramon@tayag.net"
   gem.authors = ["Ramon Tayag"]
   # Include your dependencies below. Runtime dependencies are required when using your gem,
@@ -26,28 +26,25 @@ Jeweler::Tasks.new do |gem|
 end
 Jeweler::RubygemsDotOrgTasks.new
 
-require 'rake/testtask'
-Rake::TestTask.new(:test) do |test|
-  test.libs << 'lib' << 'test'
-  test.pattern = 'test/**/test_*.rb'
-  test.verbose = true
+require 'rspec/core'
+require 'rspec/core/rake_task'
+RSpec::Core::RakeTask.new(:spec) do |spec|
+  spec.pattern = FileList['spec/**/*_spec.rb']
 end
 
-require 'rcov/rcovtask'
-Rcov::RcovTask.new do |test|
-  test.libs << 'test'
-  test.pattern = 'test/**/test_*.rb'
-  test.verbose = true
+RSpec::Core::RakeTask.new(:rcov) do |spec|
+  spec.pattern = 'spec/**/*_spec.rb'
+  spec.rcov = true
 end
 
-task :default => :test
+task :default => :spec
 
 require 'rake/rdoctask'
 Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "active_text #{version}"
+  rdoc.title = "at #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end

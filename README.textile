@@ -4,9 +4,69 @@ ActiveText is to text, as ActiveRecord is to the database. ActiveText is able to
 
 h2. Why would you want to do this?
 
-Ramon Tayag was looking for a way to edit SASS files in terms of variables. He wanted end-users who didn't know anything about SASS to be able to edit variables to change colors, images, etc, in the stylesheet. To acheive that, he needed the ability to parse through text files and easy replace variables in them.
+Ramon Tayag was looking for a way to edit SASS files in terms of variables. He wanted end-users who didn't know anything about SASS to be able to edit variables to change colors, images, etc, in the stylesheet. To achieve that, he needed the ability to parse through text files and easy replace variables in them.
 
-== Contributing to active_text
+h2. How does it work?
+
+Given this text:
+
+<pre>// @name Background image
+// @kind file
+// @description Background image. Tiled left to right, up to down, so the file has to be repeatable.
+$bg_image: "http://someurl.com/bg.jpg"
+
+// @name Link Color
+// @kind color
+// @description Color of the link text
+$link_color: #555;
+</pre>
+
+You can pass that into a ActiveText:
+
+<pre>
+@at = ActiveText::Base.new(text_you_see_above)
+@at.bg_image.name # returns "Background image"
+@at.bg_image.kind # returns "file"
+@at.bg_image.value # returns %Q("http://someurl.com/bg.jpg") - note that there are double quotes in the string
+@at.link_color.kind # returns "color"
+@at.link_color.value # returns "#555"
+</pre>
+
+You can also update the values:
+
+<pre>
+@at = ActiveText::Base.new(text_you_see_above)
+@at.bg_image.value = "'/path/to/image.png'"
+@at.render # returns the text passed into base, with values replaced:
+</pre>
+
+<pre>
+// @name Background image
+// @kind file
+// @description Background image. Tiled left to right, up to down, so the file has to be repeatable.
+$bg_image: '/path/to/image.png'
+
+// @name Link Color
+// @kind color
+// @description Color of the link text
+$link_color: #555;
+</pre>
+
+You can also mass update: <pre>@at.update_attributes(:bg_image => %Q("http://anotherurl.com/img.jpg"), :link_color => "green")</pre>
+
+h2. Gotchas
+
+Right now, only the following metadata will work:
+
+* name
+* kind
+* color
+
+And only the following format to pickup values for variables will work:
+
+<code>$variable_name: this is the value;</code>
+
+h2. Contributing to active_text
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
@@ -16,7 +76,6 @@ Ramon Tayag was looking for a way to edit SASS files in terms of variables. He w
 * Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
 * Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
 
-== Copyright
+h2. Copyright
 
-Copyright (c) 2011 Ramon Tayag. See LICENSE.txt for
-further details.
+Copyright (c) 2011 Ramon Tayag. See LICENSE.txt for further details.
