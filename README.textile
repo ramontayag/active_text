@@ -37,7 +37,7 @@ You can also update the values:
 <pre>
 @at = ActiveText::Base.new(text_you_see_above)
 @at.bg_image.value = "'/path/to/image.png'"
-@at.render # returns the text passed into base, with values replaced:
+@at.apply # returns the text passed into base, with values replaced:
 </pre>
 
 <pre>

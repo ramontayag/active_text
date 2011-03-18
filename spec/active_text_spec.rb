@@ -39,13 +39,13 @@ $mbc2: "http://someurl.com/image.jpg";}
       @s.mbc2.value = %Q("Another URL")
       @s.mbc2.value.should == %Q("Another URL")
 
-      rendered_text = @s.render
+      rendered_text = @s.apply
       rendered_text.should_not match(/http:\/\/someurl\.com\/image\.jpg/)
       rendered_text.should match(/\$mbc2: "Another URL";/)
 
       @s.mbc2.value = %Q("Some third URL")
       @s.mbc2.value.should == %Q("Some third URL")
-      rendered_text = @s.render
+      rendered_text = @s.apply
       rendered_text.should_not match(/\$mbc2: "Another URL";/)
       rendered_text.should match(/\$mbc2: "Some third URL";/)
     end
@@ -61,7 +61,7 @@ $mbc2: "http://someurl.com/image.jpg";}
 $mbc2: "Another URL";}
       @s = ActiveText::Base.new(text_old)
       @s.mbc2.value = %Q("Another URL")
-      @s.render.should == text_new
+      @s.apply.should == text_new
     end
   end
 
