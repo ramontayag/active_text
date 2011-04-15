@@ -29,7 +29,7 @@ module ActiveText
     end
 
     # Used to update the text
-    def apply
+    def render
       @variables.each do |key, var|
         @text.gsub!(/^\$#{key}: .+;/, %Q($#{key}: #{var.value};))
       end
