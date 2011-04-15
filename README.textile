@@ -58,9 +58,9 @@ You can also mass update: <pre>@at.update_attributes(:bg_image => %Q("http://ano
 
 h2. Methods
 
-Besides calling .attribute, you can ask for all attributes:
+h3. .attributes
 
-<pre>@at.attributes</pre> returns a hash <pre>{"mbc" => ActiveText::Variable, "mbc2" => ActiveText::Variable}</pre>
+<pre>@at.attributes</pre> returns a hash <pre>{"mbc" => value_of_mbc, "mbc2" => value_of_mbc2}</pre>
 
 h2. Gotchas
 
