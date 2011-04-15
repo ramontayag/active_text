@@ -82,8 +82,7 @@ $mbc: #555;}
 
   describe ".attributes" do
     it ".attributes should return an empty hash when there are no valid variables" do
-      @text = %{
-$mbc2: "http://someurl.com/image.jpg";
+      @text = %{$mbc2: "http://someurl.com/image.jpg";
 $mbc: #555;}
       @s = ActiveText::Base.new(@text)
       @s.attributes.should == {}
@@ -136,5 +135,9 @@ $mbc2: "http://someurl.com/image.jpg";
     @s = ActiveText::Base.new(text)
     @s.mbc2 = nil
     @s.mbc2.should == %Q("http://someurl.com/image.jpg")
+  end
+
+  it "should still work if there is no text" do
+    ActiveText::Base.new(nil).attributes.should be_empty
   end
 end

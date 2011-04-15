@@ -14,10 +14,12 @@ module ActiveText
       @options = options
 
       # instantiate all variables
-      @text.scan(/^\${1}(.+): .+;/).flatten.each do |variable_name|
-        if has_context?(variable_name)
-          variable = ActiveText::Variable.new(variable_name, context_of(variable_name), @options[:comment])
-          @variables.merge!({variable_name.to_sym => variable})
+      if @text
+        @text.scan(/^\${1}(.+): .+;/).flatten.each do |variable_name|
+          if has_context?(variable_name)
+            variable = ActiveText::Variable.new(variable_name, context_of(variable_name), @options[:comment])
+            @variables.merge!({variable_name.to_sym => variable})
+          end
         end
       end
     end
