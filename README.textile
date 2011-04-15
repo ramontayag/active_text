@@ -25,18 +25,20 @@ You can pass that into a ActiveText:
 
 <pre>
 @at = ActiveText::Base.new(text_you_see_above)
-@at.bg_image.name # returns "Background image"
-@at.bg_image.kind # returns "file"
-@at.bg_image.value # returns %Q("http://someurl.com/bg.jpg") - note that there are double quotes in the string
-@at.link_color.kind # returns "color"
-@at.link_color.value # returns "#555"
+@at[:bg_image][:name] # "Background image"
+@at[:bg_image][:kind] # "file"
+@at[:bg_image][:value] # %Q("http://someurl.com/bg.jpg") - note that there are double quotes in the string
+@at.bg_image # same as @at[:bg_image][:value]
+@at[:link_color][:kind] # "color"
+@at[:link_color][:value] # "#555"
+@at.link_color # same as @at[:link_color][:value]
 </pre>
 
 You can also update the values:
 
 <pre>
 @at = ActiveText::Base.new(text_you_see_above)
-@at.bg_image.value = "'/path/to/image.png'"
+@at.bg_image = "'/path/to/image.png'"
 @at.render # returns the text passed into base, with values replaced:
 </pre>
 
