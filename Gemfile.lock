@@ -29,4 +29,4 @@ DEPENDENCIES
   bundler (~> 1.0.0)
   jeweler (~> 1.5.2)
   rcov
-  rspec (~> 2.3.0)
+  rspec (= 2.3.0)

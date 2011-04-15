@@ -39,7 +39,7 @@ $mbc2: "http://someurl.com/image.jpg";}
       @s.mbc2 = %Q("Another URL")
       @s.mbc2.should == %Q("Another URL")
 
-      rendered_text = @s.render
+      rendered_text = @s.apply
       rendered_text.should_not match(/http:\/\/someurl\.com\/image\.jpg/)
       rendered_text.should match(/\$mbc2: "Another URL";/)
 
