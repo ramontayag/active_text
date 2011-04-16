@@ -66,7 +66,8 @@ module ActiveText
           variable.value
         end
       else
-        raise NoMethodError, "Variable does not exist"
+        Rails.logger.debug("Could not find #{method_name} among these variables: #{@variables.inspect}")
+        raise NoMethodError, %Q(Method "#{method_name}" does not exist)
       end
     end
 

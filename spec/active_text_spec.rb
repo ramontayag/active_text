@@ -105,19 +105,15 @@ $mbc: #555;}
 // @description Background image.
 $mbc2: "http://someurl.com/image.jpg";
 
-// @name Masthead BG Color
+// @name Dark color
 // @kind color
-// @description Background color.
-$mbc: #555;}
+// @description This is the dark color all throughout the site.
+$blue_gray: #5f7081;
+}
     @s = ActiveText::Base.new(text)
-    @s.update_attributes(:mbc2 => %Q("Another URL"), :mbc => nil)
+    @s.update_attributes(:mbc2 => %Q("Another URL"), "blue_gray" => "#444")
     @s.mbc2.should == %Q("Another URL")
-    @s.mbc.should == "#555"
-    # even after reinstantiation
-    @s = ActiveText::Base.new(text)
-    @s.update_attributes({"mbc" => "#444"})
-    @s.mbc2.should == %Q("http://someurl.com/image.jpg")
-    @s.mbc.should == "#444"
+    @s.blue_gray.should == "#444"
   end
 
   it "should have setter method for variables" do
