@@ -18,6 +18,7 @@ module ActiveText
         @text.scan(/^\${1}(.+): .+;/).flatten.each do |variable_name|
           if has_context?(variable_name)
             variable = ActiveText::Variable.new(variable_name, context_of(variable_name), @options[:comment])
+            #puts "Instantiating variable: :#{variable_name} => #{variable.value}"
             @variables.merge!({variable_name.to_sym => variable})
           end
         end
@@ -31,7 +32,7 @@ module ActiveText
     end
 
     # Used to update the text
-    def render
+    def apply
       @variables.each do |key, var|
         @text.gsub!(/^\$#{key}: .+;/, %Q($#{key}: #{var.value};))
       end

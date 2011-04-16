@@ -39,13 +39,13 @@ $mbc2: "http://someurl.com/image.jpg";}
       @s.mbc2 = %Q("Another URL")
       @s.mbc2.should == %Q("Another URL")
 
-      rendered_text = @s.render
+      rendered_text = @s.apply
       rendered_text.should_not match(/http:\/\/someurl\.com\/image\.jpg/)
       rendered_text.should match(/\$mbc2: "Another URL";/)
 
       @s.mbc2 = %Q("Some third URL")
       @s.mbc2.should == %Q("Some third URL")
-      rendered_text = @s.render
+      rendered_text = @s.apply
       rendered_text.should_not match(/\$mbc2: "Another URL";/)
       rendered_text.should match(/\$mbc2: "Some third URL";/)
     end
@@ -61,7 +61,7 @@ $mbc2: "http://someurl.com/image.jpg";}
 $mbc2: "Another URL";}
       @s = ActiveText::Base.new(text_old)
       @s.mbc2 = %Q("Another URL")
-      @s.render.should == text_new
+      @s.apply.should == text_new
     end
   end
 
@@ -113,6 +113,11 @@ $mbc: #555;}
     @s.update_attributes(:mbc2 => %Q("Another URL"), :mbc => nil)
     @s.mbc2.should == %Q("Another URL")
     @s.mbc.should == "#555"
+    # even after reinstantiation
+    @s = ActiveText::Base.new(text)
+    @s.update_attributes({"mbc" => "#444"})
+    @s.mbc2.should == %Q("http://someurl.com/image.jpg")
+    @s.mbc.should == "#444"
   end
 
   it "should have setter method for variables" do
