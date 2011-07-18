@@ -26,7 +26,7 @@ module ActiveText
     end
 
     def value
-      @context.each do |string|
+      @context.split("\n").each do |string|
         string =~ /^\${1}#{@key}: (.+);/
         return $1 if $1
       end
@@ -39,7 +39,7 @@ module ActiveText
     private
 
     def content_of(metadata)
-      @context.each do |string|
+      @context.split("\n").each do |string|
         string =~ /^#{@comment} @([\w]+[^\s]) (.+)/
         return $2 if $1 == metadata
       end
